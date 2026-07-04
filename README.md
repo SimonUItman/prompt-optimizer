@@ -17,7 +17,7 @@
 
 ## 环境要求
 
-- Windows、macOS 或 Linux
+- Windows
 - Node.js 18+
 - DeepSeek API Key，只有使用 AI 优化功能时需要
 
@@ -25,7 +25,7 @@
 
 ### Windows 双击启动
 
-1. 安装 [Node.js 18+] 管理员模式下命令行直接如输入：winget install OpenJS.NodeJS.18
+1. 安装 [Node.js 18+] windows管理员模式下命令行直接如输入：winget install OpenJS.NodeJS.18
 2. 克隆或下载本项目
 3. 目前项目仅支持使用 DeepSeek，双击 `配置API密钥.bat`，按提示输入自己的 API Key
 4. 双击 `启动软件.bat`
