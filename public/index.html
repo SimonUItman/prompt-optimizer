@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Prompt 模块化组合优化软件</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">P</span>
+          <div>
+            <h1>Prompt Studio</h1>
+            <p>模块化组合优化</p>
+          </div>
+        </div>
+        <nav class="nav-tabs" aria-label="页面导航">
+          <button class="nav-tab active" data-view="compose">生成</button>
+          <button class="nav-tab" data-view="templates">常用场景</button>
+          <button class="nav-tab" data-view="history">历史</button>
+          <button class="nav-tab" data-view="settings">设置</button>
+        </nav>
+        <section class="quick-scenes">
+          <div class="mini-head">
+            <h2>常用场景</h2>
+            <button class="mini-btn" id="save-scene-sidebar-btn" title="保存当前为常用场景">+</button>
+          </div>
+          <div id="quick-scene-list"></div>
+        </section>
+      </aside>
+
+      <section class="main-view active" id="compose-view">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">用户主动选择模块</p>
+            <h2>组合一个高质量 Prompt</h2>
+          </div>
+          <div class="topbar-actions">
+            <button class="secondary" id="save-scene-btn">保存为常用场景</button>
+            <button class="primary" id="optimize-btn">生成优化 Prompt</button>
+          </div>
+        </header>
+
+        <section class="request-panel">
+          <label>
+            <span>一句话需求</span>
+            <textarea id="user-input" rows="3" placeholder="例如：我想学 AI Agent"></textarea>
+          </label>
+          <div class="request-grid">
+            <label>
+              <span>背景</span>
+              <input id="background-input" placeholder="你的基础、角色或上下文" />
+            </label>
+            <label>
+              <span>目标</span>
+              <input id="goal-input" placeholder="希望达到什么结果" />
+            </label>
+            <label>
+              <span>限制条件</span>
+              <input id="constraints-input" placeholder="时间、预算、格式、范围等" />
+            </label>
+          </div>
+        </section>
+
+        <section class="workspace-grid">
+          <aside class="module-list" aria-label="Prompt 模块列表">
+            <h3>Prompt 模块</h3>
+            <div id="module-list"></div>
+          </aside>
+
+          <section class="module-config">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">当前模块</p>
+                <h3 id="active-module-title">AIM 提问法</h3>
+              </div>
+              <span id="active-module-status" class="status-pill">已启用</span>
+            </div>
+            <p id="active-module-desc" class="muted"></p>
+            <div id="module-fields"></div>
+            <div id="sub-option-list"></div>
+          </section>
+
+          <section class="preview-pane">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">实时预览</p>
+                <h3>Draft Prompt</h3>
+              </div>
+              <button class="icon-btn" id="copy-draft-btn" title="复制草稿">复制</button>
+            </div>
+            <textarea id="draft-preview" spellcheck="false"></textarea>
+          </section>
+        </section>
+
+        <section class="result-panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">DeepSeek 优化结果</p>
+              <h3>最终 Prompt</h3>
+            </div>
+            <div class="inline-actions">
+              <button class="secondary" id="copy-final-btn">复制</button>
+              <button class="secondary" id="export-md-btn">导出 Markdown</button>
+              <button class="secondary" id="export-txt-btn">导出 TXT</button>
+            </div>
+          </div>
+          <textarea id="final-prompt" placeholder="点击“生成优化 Prompt”后显示结果，也可以手动编辑。"></textarea>
+          <p id="status-message" class="status-message"></p>
+        </section>
+      </section>
+
+      <section class="main-view" id="templates-view">
+        <header class="topbar">
+          <h2>常用场景</h2>
+          <button class="primary" id="save-scene-page-btn">保存当前场景</button>
+        </header>
+        <div id="template-list" class="list-page"></div>
+      </section>
+
+      <section class="main-view" id="history-view">
+        <header class="topbar">
+          <h2>历史记录</h2>
+          <input id="history-search" class="search-input" placeholder="搜索历史 Prompt" />
+        </header>
+        <div id="history-list" class="list-page"></div>
+      </section>
+
+      <section class="main-view" id="settings-view">
+        <header class="topbar"><h2>设置</h2></header>
+        <section class="settings-panel">
+          <p class="notice">API Key 只从后端环境变量读取，前端不会保存或显示密钥。</p>
+          <div class="request-grid">
+            <label><span>模型名称</span><input id="model-input" value="deepseek-chat" /></label>
+            <label><span>Base URL</span><input id="base-url-input" value="https://api.deepseek.com" /></label>
+            <label><span>Temperature</span><input id="temperature-input" type="number" min="0" max="2" step="0.1" value="0.4" /></label>
+            <label><span>Max Tokens</span><input id="max-tokens-input" type="number" min="200" step="100" value="2400" /></label>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
